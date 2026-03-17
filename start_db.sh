@@ -2,7 +2,7 @@
 
 # 1. 定义变量，方便以后修改
 CONTAINER_NAME="my_mysql"
-MYSQL_PASSWORD="Zzyisgenius"
+MYSQL_PASSWORD="1234"
 SQL_FILE="db1.sql"
 
 echo "🚀 正在清理旧的容器..."

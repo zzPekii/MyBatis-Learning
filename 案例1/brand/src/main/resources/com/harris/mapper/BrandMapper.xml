@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.harris.mapper.BrandMapper">
+
+    <!-- selectAll --> 
+
+    <!-- <select id="selectAll" resultType="com.harris.pojo.Brand">
+        SELECT * FROM tb_brand;
+    </select> -->
+
+    <!--变量名字必须是映射的；数据库表和实体类的属性名称不一致，则不能封装数据
+        2中方法去解决不一致的问题
+        1. 起别名，也就是sql里面的 xxx as abc
+        2. sql 片段-->
+
+    <!-- <select id="selectAll" resultType="com.harris.pojo.Brand">
+        SELECT id, brand_name as brandName, company_name as companyName, ordered, description, status 
+        FROM tb_brand;
+    </select> -->
+
+    <!-- Method2 -->
+    <!-- SQL 片段-->
+    <!-- <sql id="brand_column">
+        id, brand_name as brandName, company_name as companyName, ordered, description, status
+    </sql>
+    <select id="selectAll" resultType="com.harris.pojo.Brand"></select>
+        SELECT  <include refid="brand_column" />
+        FROM tb_brand;
+    </select> -->
+
+
+    <!-- Method3 ResultMap-->
+
+    <!-- 定义一个resultMap -->
+    <!-- 
+        id 唯一标识
+        type 映射类型
+        谁不一样写谁就行了
+    -->
+    <resultMap id="brandResultMap" type="com.harris.pojo.Brand">
+        <!-- column -> property -->
+        <result column="brand_name" property="brandName" />
+        <result column="company_name" property="companyName" />
+    </resultMap>
+
+    <select id="selectAll" resultMap="brandResultMap">
+        SELECT * FROM tb_brand;
+    </select>
+
+
+
+
+
+
+
+    <!-- selectById --> 
+    <!--
+        参数占位符
+        1. #{}: 会将其替换为?, 为了防止sql注入
+        2. ${}: 拼sql，会存在sql注入的问题
+    -->
+    <select id="selectById" resultMap="brandResultMap">
+        SELECT * FROM tb_brand WHERE id = #{id};
+    </select>
+
+
+
+
+
+
+
+
+    <!-- selectByCondition --> 
+
+    <select id="selectByCondition" resultMap="brandResultMap">
+        SELECT *
+        FROM tb_brand
+        WHERE status = #{status}
+            AND company_name like #{companyName}
+            AND brand_name like #{brandName}
+    </select>    
+</mapper>
