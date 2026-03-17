@@ -9,3 +9,7 @@ MyBatis 学习之路
 
 ## v2 Mapper代理开发
 如果我们有很多个数据类的话，我们可以吧所有的 xml 文件放在resource下面对应的文件夹下（即形成对应的映射文件）
+
+## v3 MyBatis的核心文件配置
+主要学习了在 `config` 里面可以声明包，在对应的Mapper中的 `resultType` 书写就不需要那么麻烦了
+
