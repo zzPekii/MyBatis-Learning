@@ -20,3 +20,16 @@ MyBatis 学习之路
 1. 零零散散的条件传入
 2. 封装成类
 3. 封装成map
+
+### insert
+1. void
+2. 主键返回：需要在对应的xml里面标注 `useGeneratedKeys="true" keyProperty="id"`
+3. 默认不commit，可以手动commit或者创建SQL session的时候给True
+
+### update
+1. 修改全部字段
+2. 动态修改字段，要用动态的SQL语句，用if在里面判断
+
+### delete
+1. 删除一个
+2. 批量删除，但是要注意mybatis会把参数封装成一个Map集合，名字默认是array，需要在定义接口的时候标注一下

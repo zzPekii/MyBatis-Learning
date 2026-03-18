@@ -22,4 +22,19 @@ public interface BrandMapper {
     //                                      @Param("brandName") String brandName);
     public List<Brand> selectByCondition(Brand brand);
     // public List<Brand> selectByCondition(Map map);
+
+    // add data into the table
+    public void add(Brand brand);
+
+    // update a row
+    // 返回int为影响的行数
+    public int update(Brand brand);
+
+    // delete a row
+    public void deleteById(int id);
+
+    /**
+     * 批量删除
+     */
+    void deleteByIds(@Param("ids")int[] ids);
 }
